@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QuanLyBanVeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHUYENXE">
+          <Key>
+            <PropertyRef Name="MaChuyen" />
+          </Key>
+          <Property Name="MaChuyen" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TuyenDuong" Type="nvarchar" MaxLength="100" />
+          <Property Name="GioXuatBen" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VEXE">
+          <Key>
+            <PropertyRef Name="MaVe" />
+          </Key>
+          <Property Name="MaVe" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenKhach" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="15" />
+          <Property Name="YeuCauTrungChuyen" Type="nvarchar" MaxLength="200" />
+          <Property Name="MaChuyen" Type="nvarchar" MaxLength="20" />
+          <Property Name="NgayDi" Type="date" />
+        </EntityType>
+        <Association Name="FK_VEXE_CHUYENXE">
+          <End Role="CHUYENXE" Type="Self.CHUYENXE" Multiplicity="0..1" />
+          <End Role="VEXE" Type="Self.VEXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENXE">
+              <PropertyRef Name="MaChuyen" />
+            </Principal>
+            <Dependent Role="VEXE">
+              <PropertyRef Name="MaChuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyBanVeModelStoreContainer">
+          <EntitySet Name="CHUYENXE" EntityType="Self.CHUYENXE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEXE" EntityType="Self.VEXE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_VEXE_CHUYENXE" Association="Self.FK_VEXE_CHUYENXE">
+            <End Role="CHUYENXE" EntitySet="CHUYENXE" />
+            <End Role="VEXE" EntitySet="VEXE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyBanVeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHUYENXE">
+          <Key>
+            <PropertyRef Name="MaChuyen" />
+          </Key>
+          <Property Name="MaChuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TuyenDuong" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GioXuatBen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VEXEs" Relationship="Self.FK_VEXE_CHUYENXE" FromRole="CHUYENXE" ToRole="VEXE" />
+        </EntityType>
+        <EntityType Name="VEXE">
+          <Key>
+            <PropertyRef Name="MaVe" />
+          </Key>
+          <Property Name="MaVe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenKhach" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="YeuCauTrungChuyen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MaChuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHUYENXE" Relationship="Self.FK_VEXE_CHUYENXE" FromRole="VEXE" ToRole="CHUYENXE" />
+          <Property Name="NgayDi" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_VEXE_CHUYENXE">
+          <End Role="CHUYENXE" Type="Self.CHUYENXE" Multiplicity="0..1" />
+          <End Role="VEXE" Type="Self.VEXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYENXE">
+              <PropertyRef Name="MaChuyen" />
+            </Principal>
+            <Dependent Role="VEXE">
+              <PropertyRef Name="MaChuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyBanVeEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHUYENXEs" EntityType="Self.CHUYENXE" />
+          <EntitySet Name="VEXEs" EntityType="Self.VEXE" />
+          <AssociationSet Name="FK_VEXE_CHUYENXE" Association="Self.FK_VEXE_CHUYENXE">
+            <End Role="CHUYENXE" EntitySet="CHUYENXEs" />
+            <End Role="VEXE" EntitySet="VEXEs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyBanVeModelStoreContainer" CdmEntityContainer="QuanLyBanVeEntities1">
+          <EntitySetMapping Name="CHUYENXEs">
+            <EntityTypeMapping TypeName="QuanLyBanVeModel.CHUYENXE">
+              <MappingFragment StoreEntitySet="CHUYENXE">
+                <ScalarProperty Name="MaChuyen" ColumnName="MaChuyen" />
+                <ScalarProperty Name="TuyenDuong" ColumnName="TuyenDuong" />
+                <ScalarProperty Name="GioXuatBen" ColumnName="GioXuatBen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEXEs">
+            <EntityTypeMapping TypeName="QuanLyBanVeModel.VEXE">
+              <MappingFragment StoreEntitySet="VEXE">
+                <ScalarProperty Name="NgayDi" ColumnName="NgayDi" />
+                <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+                <ScalarProperty Name="TenKhach" ColumnName="TenKhach" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="YeuCauTrungChuyen" ColumnName="YeuCauTrungChuyen" />
+                <ScalarProperty Name="MaChuyen" ColumnName="MaChuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.37327.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyBanVe", "QuanLyBanVe\QuanLyBanVe.csproj", "{0C107EA1-8326-4E30-863A-AED839E149F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C107EA1-8326-4E30-863A-AED839E149F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C107EA1-8326-4E30-863A-AED839E149F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C107EA1-8326-4E30-863A-AED839E149F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C107EA1-8326-4E30-863A-AED839E149F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46BEC256-2C47-48AB-BC3A-0A34D98B9F71}
+	EndGlobalSection
+EndGlobal
